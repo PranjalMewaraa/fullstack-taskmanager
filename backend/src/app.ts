@@ -35,12 +35,17 @@ const corsMiddleware = cors({
 
 app.use(
   cors({
-    origin: true,
+    origin: "https://fullstack-taskmanager-chi.vercel.app",
+    credentials: true,
+  }),
+);
+app.use(
+  cors({
+    origin: "http://localhost:3000",
     credentials: true,
   }),
 );
 
-app.options("*", cors());
 app.use(express.json());
 app.use(cookieParser());
 
