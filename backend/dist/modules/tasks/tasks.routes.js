@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.tasksRoutes = void 0;
+const express_1 = require("express");
+const auth_middleware_1 = require("../../middleware/auth.middleware");
+const validate_middleware_1 = require("../../middleware/validate.middleware");
+const tasks_controller_1 = require("./tasks.controller");
+const tasks_schema_1 = require("./tasks.schema");
+const router = (0, express_1.Router)();
+router.use(auth_middleware_1.authenticate);
+router.get('/', (0, validate_middleware_1.validate)(tasks_schema_1.listTasksSchema), tasks_controller_1.tasksController.list);
+router.post('/', (0, validate_middleware_1.validate)(tasks_schema_1.createTaskSchema), tasks_controller_1.tasksController.create);
+router.get('/:id', (0, validate_middleware_1.validate)(tasks_schema_1.getTaskSchema), tasks_controller_1.tasksController.getById);
+router.patch('/:id', (0, validate_middleware_1.validate)(tasks_schema_1.updateTaskSchema), tasks_controller_1.tasksController.update);
+router.delete('/:id', (0, validate_middleware_1.validate)(tasks_schema_1.deleteTaskSchema), tasks_controller_1.tasksController.remove);
+router.patch('/:id/toggle', (0, validate_middleware_1.validate)(tasks_schema_1.toggleTaskSchema), tasks_controller_1.tasksController.toggle);
+exports.tasksRoutes = router;
