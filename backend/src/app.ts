@@ -11,7 +11,7 @@ const allowedOrigins = new Set([
   env.FRONTEND_ORIGIN,
   "http://localhost:3000",
   "http://127.0.0.1:3000",
-  "https://fullstack-taskmanager-chi.vercel.app/",
+  "https://fullstack-taskmanager-chi.vercel.app",
 ]);
 
 const corsMiddleware = cors({
@@ -37,7 +37,7 @@ app.use(
   cors({
     origin: env.FRONTEND_ORIGIN,
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
