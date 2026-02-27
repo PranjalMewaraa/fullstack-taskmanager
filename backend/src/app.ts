@@ -33,7 +33,14 @@ const corsMiddleware = cors({
   optionsSuccessStatus: 204,
 });
 
-app.use(corsMiddleware);
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  }),
+);
+
+app.options("*", cors());
 app.use(express.json());
 app.use(cookieParser());
 
